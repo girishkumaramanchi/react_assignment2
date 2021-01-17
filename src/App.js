@@ -7,13 +7,15 @@ class App extends Component {
 
   state = {
     name:"",
-    length:0
+    // length:0
   }
 
   printLengthHandler = (event) => {
-    let length = event.target.value.length;
+    // let length = event.target.value.length;
     // console.log(event.target.value, length)
-    this.setState({name:event.target.value,length:length})
+    this.setState({name:event.target.value,
+      // length:length
+    })
   }
 
   deleteComponent = (index) => {
@@ -25,7 +27,9 @@ class App extends Component {
     // console.log(str);
     // str = str.join("");
     // console.log(str);
-    this.setState({name:str,length:str.length});
+    this.setState({name:str,
+      // length:str.length
+    });
   }
 
   render(){
@@ -33,9 +37,12 @@ class App extends Component {
     let charComponents = (
       <div>
         {/* {this.state.name.map.call((letter,index) => { */}
-        {Array.prototype.map.call(this.state.name, (letter,index) => {
+        {this.state.name.split("").map((letter,index) => {
           return <CharComponent letter={letter} click={() => this.deleteComponent(index)} key={index} />
         })}
+        {/* {Array.prototype.map.call(this.state.name, (letter,index) => {
+          return <CharComponent letter={letter} click={() => this.deleteComponent(index)} key={index} />
+        })} */}
       </div>
     )
 
@@ -43,8 +50,8 @@ class App extends Component {
       <div className="App">
         <h4><u>Assignment</u></h4>
         <input type="text" onChange={this.printLengthHandler} value={this.state.name} />
-        <p>length of the text: {this.state.length}</p>
-        <ValidationComponent len={this.state.length} />
+        <p>length of the text: {this.state.name.length}</p>
+        <ValidationComponent len={this.state.name.length} />
         {charComponents}
         {/* <CharComponent /> */}
       </div>
